@@ -26,7 +26,20 @@ $(function () {
         '</td>' +
         '</tr>';
     });
-    $('#tbody').html(rows || '<tr><td colspan="8" class="empty">暂无数据</td></tr>');
+    // 无数据时区分「库为空」和「搜索无结果」，给用户更准确的提示
+    var emptyTip = '暂无数据';
+    if (!data.list.length && data.total === 0 && bookName) {
+      emptyTip = '没有找到名称包含「' + bookName + '」的图书';
+    }
+    $('#tbody').html(rows ||
+      '<tr><td colspan="8" class="empty">' + emptyTip + '</td></tr>');
+
+    // 搜索结果条数提示（当前页 / 总条数）
+    var summary = '共 ' + data.total + ' 条记录';
+    if (bookName) {
+      summary = '「' + bookName + '」共匹配 ' + data.total + ' 条';
+    }
+    $('#summary').text(summary);
 
     var pager = '共 ' + data.totalPages + ' 页，共 ' + data.total + ' 条记录&nbsp;&nbsp;';
     pager += '<a href="javascript:;" class="pg" data-page="' + (data.page - 1) + '">上一页</a>';
