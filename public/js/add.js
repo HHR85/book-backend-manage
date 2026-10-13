@@ -41,8 +41,8 @@ function collect(form) {
 $(function () {
   var form = $('#form');
 
-  // 默认值
-  form.find('#createdBy').val('系统管理员');
+  // 默认值（试卷条文 12C：入库人固定为 admin 用户）
+  form.find('#createdBy').val('admin');
   form.find('#creationTime').val(today());
   form.find('#borrowed').val('0');
 

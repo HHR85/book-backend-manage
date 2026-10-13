@@ -18,7 +18,7 @@ models 只写 SQL；services 做默认值与业务规则；controllers 收参、
   LEFT JOIN 带出 `bookTypeName`；`creationTime DESC, bookId DESC`；
   返回 `data:{ list, total, page, pageSize, totalPages }`
 - `GET /api/books/:id` 详情，不存在返回 404
-- `POST /api/books` 新增：service 强制 `borrowed=0`、`createdBy='系统管理员'`、
+- `POST /api/books` 新增：service 强制 `borrowed=0`、`createdBy='admin'`、
   `creationTime=NOW()`、`lastUpdateTime=NULL`
 - `PUT /api/books/:id` 修改：忽略 `createdBy`/`creationTime`，写 `lastUpdateTime=NOW()`
 - `DELETE /api/books/:id` 删除

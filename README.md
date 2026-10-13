@@ -99,7 +99,7 @@ npm start
         "bookType": 8, "bookTypeName": "科技",
         "bookAuthor": "Thomas H. Cormen", "publishPress": "机械工业出版社",
         "publishDate": "2013-01-01", "borrowed": 0,
-        "createdBy": "系统管理员", "creationTime": "2026-09-12",
+        "createdBy": "admin", "creationTime": "2026-09-12",
         "lastUpdateTime": null
       }
     ],
@@ -114,14 +114,14 @@ npm start
 
 ### POST /api/books — 新增图书
 
-请求体（`borrowed`、`createdBy` 传空则取默认值：0 / 系统管理员；`creationTime` 由服务端取当前时间）：
+请求体（`borrowed`、`createdBy` 传空则取默认值：0 / admin；`creationTime` 由服务端取当前时间）：
 
 ```json
 {
   "bookCode": "BK0013", "bookName": "围城", "bookType": 1,
   "bookAuthor": "钱锺书", "publishPress": "人民文学出版社",
   "publishDate": "1991-02-01", "borrowed": 0,
-  "createdBy": "系统管理员", "creationTime": "2026-10-13"
+  "createdBy": "admin", "creationTime": "2026-10-13"
 }
 ```
 
@@ -141,7 +141,7 @@ npm start
 | --- | --- |
 | `index.html` | 图书列表：名称搜索、新增、隔行变色表格、分页（上一页/页码/下一页/共 N 页/跳转）、查看/修改/删除 |
 | `detail.html` | 图书详情，全部字段只读，返回时保留列表页查询条件 |
-| `add.html` | 新增图书，类型下拉取自数据库，默认 入库人=系统管理员 / 入库时间=今天 / 是否借阅=未借阅 |
+| `add.html` | 新增图书，类型下拉取自数据库，默认 入库人=admin / 入库时间=今天 / 是否借阅=未借阅 |
 | `edit.html` | 修改图书，入库人与入库时间只读 |
 
 查询条件用 `sessionStorage` 记忆，从详情/新增/修改返回列表页时自动还原。
@@ -179,6 +179,10 @@ main ──●─────────────●────────
 - `book_info`：12 条图书数据，`creationTime` 各不相同，便于验证降序与分页
 - `book_info.bookType` 外键关联 `book_type.id`
 
-> 说明：试卷中「必填项」列出的是 图书编号、图书名称、图书类型、是否借阅、入库人、入库时间 6 项；
-> 但 `bookAuthor`、`publishPress`、`publishDate` 在数据库中是 `NOT NULL`，表单不填必然保存失败，
-> 因此前端把这三项也一并做了非空校验。
+> 说明一（入库人默认值）：试卷条文 12C 要求「入库人默认为当前登录人，由于不实现登录功能，
+> 当前登录人固定为 admin 用户」，故 `add.html` 与服务端 `DEFAULT_CREATED_BY` 均取 `admin`。
+
+> 说明二（必填校验项）：试卷「必填项」列出的是 图书编号、图书名称、图书类型、是否借阅、
+> 入库人、入库时间 6 项；但 `bookAuthor`、`publishPress`、`publishDate` 在数据库中是 `NOT NULL`，
+> 表单不填必然保存失败并抛出数据库非空约束异常，因此前端把这三项**也一并做了非空校验**（共 9 项）。
+> 若判卷严格要求只校验 6 项，删除 `public/js/add.js` 与 `public/js/edit.js` 中 `RULES` 数组的后 3 行即可。

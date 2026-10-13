@@ -10,7 +10,7 @@ const NEW_BOOK = {
   publishPress: '测试出版社',
   publishDate: '2026-01-01',
   borrowed: 0,
-  createdBy: '系统管理员',
+  createdBy: 'admin',
   creationTime: '2026-10-13',
 };
 
@@ -71,6 +71,23 @@ describe('图书管理接口', () => {
     expect(res.body.data.createdBy).toBe(before.body.data.createdBy);
     expect(res.body.data.creationTime).toBe(before.body.data.creationTime);
     expect(res.body.data.lastUpdateTime).not.toBeNull();
+  });
+
+  test('POST /api/books 不传 createdBy 时默认入库人为 admin（试卷条文 12C）', async () => {
+    const payload = { ...NEW_BOOK };
+    delete payload.createdBy;
+
+    const created = await request(app).post('/api/books').send(payload);
+    expect(created.status).toBe(200);
+    expect(created.body.data.createdBy).toBe('admin');
+
+    await request(app).delete('/api/books/' + created.body.data.bookId);
+  });
+
+  test('POST /api/books 缺少必填字段返回 400', async () => {
+    const res = await request(app).post('/api/books').send({ bookCode: 'X' });
+    expect(res.status).toBe(400);
+    expect(res.body.success).toBe(false);
   });
 
   test('DELETE /api/books/:id 删除后查不到', async () => {

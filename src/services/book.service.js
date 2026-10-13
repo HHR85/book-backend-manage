@@ -1,7 +1,8 @@
 const bookModel = require('../models/book.model');
 const { toDateStr } = require('../utils/date');
 
-const DEFAULT_CREATED_BY = '系统管理员';
+// 试卷条文 12C：本次不实现登录，当前登录人固定为 admin 用户
+const DEFAULT_CREATED_BY = 'admin';
 const PAGE_SIZE = 5;
 
 // 数据库行 -> 前端需要的形状（日期格式化 + 类型名兜底）
