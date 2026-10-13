@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>新增图书 - 图书借阅系统</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <h2>新增图书</h2>
+
+  <form id="form" onsubmit="return false;">
+    <div class="form-row">
+      <label>图书编号<span class="required">*</span></label>
+      <input id="bookCode" type="text" maxlength="50" placeholder="如 BK0013">
+    </div>
+    <div class="form-row">
+      <label>图书名称<span class="required">*</span></label>
+      <input id="bookName" type="text" maxlength="100">
+    </div>
+    <div class="form-row">
+      <label>图书类型<span class="required">*</span></label>
+      <select id="bookType">
+        <option value="">请选择</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>作者<span class="required">*</span></label>
+      <input id="bookAuthor" type="text" maxlength="50">
+    </div>
+    <div class="form-row">
+      <label>出版社<span class="required">*</span></label>
+      <input id="publishPress" type="text" maxlength="100">
+    </div>
+    <div class="form-row">
+      <label>出版日期<span class="required">*</span></label>
+      <input id="publishDate" type="date">
+    </div>
+    <div class="form-row">
+      <label>是否借阅<span class="required">*</span></label>
+      <select id="borrowed">
+        <option value="0">未借阅</option>
+        <option value="1">已借阅</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>入库人<span class="required">*</span></label>
+      <input id="createdBy" type="text" maxlength="50">
+    </div>
+    <div class="form-row">
+      <label>入库时间<span class="required">*</span></label>
+      <input id="creationTime" type="date">
+    </div>
+
+    <div class="form-actions">
+      <button id="save" class="btn" type="button">保存</button>
+      <button id="back" class="btn btn-plain" type="button">返回</button>
+    </div>
+  </form>
+</div>
+
+<script src="lib/jquery-1.8.3.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-1.8.3.min.js"><\/script>');</script>
+<script src="js/common.js"></script>
+<script src="js/add.js"></script>
+</body>
+</html>

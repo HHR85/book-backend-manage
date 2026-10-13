@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>图书详情 - 图书借阅系统</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <h2>图书详情</h2>
+
+  <div class="view-row"><span class="label">图书编号</span><span id="bookCode">-</span></div>
+  <div class="view-row"><span class="label">图书名称</span><span id="bookName">-</span></div>
+  <div class="view-row"><span class="label">图书类型</span><span id="bookTypeName">-</span></div>
+  <div class="view-row"><span class="label">作者</span><span id="bookAuthor">-</span></div>
+  <div class="view-row"><span class="label">出版社</span><span id="publishPress">-</span></div>
+  <div class="view-row"><span class="label">是否借阅</span><span id="borrowed">-</span></div>
+  <div class="view-row"><span class="label">入库人</span><span id="createdBy">-</span></div>
+  <div class="view-row"><span class="label">入库时间</span><span id="creationTime">-</span></div>
+
+  <div class="form-actions">
+    <button id="back" class="btn">返回</button>
+  </div>
+</div>
+
+<script src="lib/jquery-1.8.3.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-1.8.3.min.js"><\/script>');</script>
+<script src="js/common.js"></script>
+<script src="js/detail.js"></script>
+</body>
+</html>

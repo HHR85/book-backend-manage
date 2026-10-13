@@ -1,0 +1,114 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 20px;
+  font: 14px/1.6 "Microsoft YaHei", Arial, sans-serif;
+  color: #333;
+  background: #f5f6f8;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 24px 28px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+}
+
+h2 { margin: 0 0 16px; font-size: 20px; font-weight: 600; }
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.btn {
+  padding: 6px 14px;
+  border: 1px solid #2d8cf0;
+  background: #2d8cf0;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover { opacity: .9; }
+
+.btn-plain { background: #fff; color: #2d8cf0; }
+
+table { width: 100%; border-collapse: collapse; }
+
+th, td { border: 1px solid #e3e6eb; padding: 8px 10px; text-align: center; }
+
+th { background: #f0f3f7; font-weight: 600; }
+
+/* 隔行变色 */
+tbody tr:nth-child(even) { background: #fafbfd; }
+tbody tr:hover { background: #eef6ff; }
+
+td.op a { margin: 0 6px; color: #2d8cf0; text-decoration: none; }
+td.op a:hover { text-decoration: underline; }
+td.op a.del { color: #e04b4b; }
+
+.empty { color: #999; }
+
+/* 分页 */
+.pager { margin-top: 14px; text-align: right; }
+
+.pager a {
+  display: inline-block;
+  min-width: 30px;
+  padding: 2px 8px;
+  margin: 0 3px;
+  border: 1px solid #d9dde3;
+  border-radius: 4px;
+  color: #333;
+  text-decoration: none;
+}
+
+.pager a.active { background: #2d8cf0; border-color: #2d8cf0; color: #fff; }
+
+.pager input { width: 44px; padding: 2px 4px; margin: 0 4px; text-align: center; }
+
+.pager button { padding: 3px 8px; }
+
+/* 表单 */
+.form-row { margin-bottom: 14px; }
+
+.form-row label {
+  display: inline-block;
+  width: 90px;
+  margin-right: 10px;
+  text-align: right;
+}
+
+.form-row input, .form-row select {
+  width: 260px;
+  padding: 5px 8px;
+  border: 1px solid #d9dde3;
+  border-radius: 4px;
+}
+
+.form-row input:disabled, .form-row select:disabled,
+.form-row input[readonly] { background: #f2f3f5; color: #888; }
+
+.form-row .required { color: #e04b4b; margin-left: 4px; }
+
+.form-actions { padding-left: 100px; margin-top: 20px; }
+
+.form-actions .btn { margin-right: 10px; }
+
+/* 详情 */
+.view-row { padding: 8px 0; border-bottom: 1px dashed #e3e6eb; }
+
+.view-row .label {
+  display: inline-block;
+  width: 90px;
+  margin-right: 12px;
+  text-align: right;
+  color: #888;
+}
