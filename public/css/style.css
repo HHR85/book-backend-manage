@@ -56,6 +56,9 @@ td.op a.del { color: #e04b4b; }
 
 .empty { color: #999; }
 
+/* 列表结果摘要 */
+.summary { margin: 0 0 8px; color: #666; font-size: 13px; min-height: 18px; }
+
 /* 分页 */
 .pager { margin-top: 14px; text-align: right; }
 
