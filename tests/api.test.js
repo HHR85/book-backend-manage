@@ -99,6 +99,20 @@ describe('图书管理接口', () => {
     expect(after.body.success).toBe(false);
   });
 
+  test('GET /api/books 非法 page 参数回退到第 1 页', async () => {
+    const res = await request(app).get('/api/books').query({ page: 'abc' });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data.page).toBe(1);
+  });
+
+  test('GET /api/books/:id 非法 ID 返回 404 而非 500', async () => {
+    const res = await request(app).get('/api/books/abc');
+
+    expect(res.status).toBe(404);
+    expect(res.body.success).toBe(false);
+  });
+
   test('GET /api/books/:id 不存在的图书返回 404', async () => {
     const res = await request(app).get('/api/books/99999999');
     expect(res.status).toBe(404);
