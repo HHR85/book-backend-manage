@@ -53,8 +53,21 @@ function pickBorrowed(value) {
   return Number(value) === 1 ? 1 : 0;
 }
 
+// 页码/ID 参数可能来自 URL，先归一化成合法正整数，避免 NaN 直接拼进 SQL
+function toPositiveInt(value, fallback) {
+  const n = parseInt(value, 10);
+  return Number.isInteger(n) && n > 0 ? n : fallback;
+}
+
+// 图书 ID 非法时直接 404，不必再查库
+function assertValidId(bookId) {
+  if (!toPositiveInt(bookId, null)) {
+    throw notFound('图书不存在');
+  }
+}
+
 async function list({ page = 1, bookName = '' }) {
-  const current = Math.max(1, parseInt(page, 10) || 1);
+  const current = toPositiveInt(page, 1);
   const keyword = String(bookName || '').trim();
 
   const { rows, total } = await bookModel.findPage({
@@ -71,6 +84,7 @@ async function list({ page = 1, bookName = '' }) {
 }
 
 async function detail(bookId) {
+  assertValidId(bookId);
   const row = await bookModel.findById(bookId);
   if (!row) throw notFound('图书不存在');
   return toVO(row);
